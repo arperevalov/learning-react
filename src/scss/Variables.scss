@@ -1,0 +1,10 @@
+$bg: #F2F2F2;
+$base: #393939;
+
+
+@mixin block {
+    width: 100%;
+    background-color: $bg;
+    font-size: 1rem;
+    border-radius: .5rem;
+}
