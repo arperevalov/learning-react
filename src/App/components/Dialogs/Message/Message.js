@@ -1,12 +1,12 @@
 import React from 'react';
-import User from '../User/User';
+import User from './../../User/User';
 
-export default function Message() {
+export default function Message(props) {
     return (
         <div className='message'>
-            <User name='Faggot'/>
+            <User name={props.name} id={props.id} />
             <div className='message__text'>
-            Lorem ipsum dolor sit amet.
+            {props.text}
             </div>
         </div>
     )

@@ -1,12 +1,13 @@
 .dialogs{
     display: grid;
     grid-template-columns: 1fr 4fr;
+    position: relative;
 
     .user {
         display: flex;
         gap: .5rem;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
     
         &__name {
             font-size: 1rem;
@@ -36,14 +37,23 @@
         width: 100%;
         height: 50vh;
         overflow-y: auto;
-        display: flex;
-        gap: 2rem;
-        flex-direction: column;
-        justify-content: flex-end;
+
     }
 
     &__messages {
         overflow-y: auto;
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    &__newMessage{
+        position: absolute;
+        bottom: 0%;
     }
 }

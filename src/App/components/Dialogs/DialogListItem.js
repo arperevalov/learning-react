@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from "./Avatar";
+import Avatar from "./../User/Avatar";
 
-export default function User(props) {
+export default function DialogListItem(props) {
 
     return (
-        <Link to={'/profile/'}>
+        <Link to={'/messages/'+props.id}>
             <div className='user'>
                 <Avatar name={props.name}/>
                 <span className='user__name'>

@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Profile from './components/Profile/Profile';
 
-export default function App() {
+export default function App(props) {
     return (
             <div className='container'>
                 <Header/>
@@ -13,9 +13,8 @@ export default function App() {
                     <Nav/>
                     <div className='content'>
                         <Routes>
-                            <Route path="/messages" element={<Dialogs />}/>
-                            <Route path="/profile" element={<Profile />}/>
-                            <Route path="/" element={<Profile />}/>
+                            <Route exact path="/messages" element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>}/>
+                            <Route path="/profile" element={<Profile posts={props.posts} loggedUser={props.loggedUser} />}/>
                         </Routes>
                     </div>
 
