@@ -14,15 +14,8 @@ export default function App(props) {
                     <Nav/>
                     <div className='content'>
                         <Routes>
-                            <Route exact path="/messages" element={<Dialogs 
-                                                                    state={props.state.messagesPage}
-                                                                    currentDialogTextFieldUpdate={props.currentDialogTextFieldUpdate}
-                                                                    sendMessageToDialog={props.sendMessageToDialog}/>}/>
-                            <Route path="/profile" element={<Profile 
-                                                            state={props.state.profilePage} 
-                                                            loggedUser={props.state.loggedUser} 
-                                                            newPost={props.newPost}
-                                                            newPostFieldUpdate={props.newPostFieldUpdate} />}/>
+                            <Route exact path="/messages" element={<Dialogs state={props.store.getState().dialogPage} user={props.store.getState().loggedUser} dispatch={props.dispatch}/>}/>
+                            <Route path="/profile" element={<Profile state={props.store.getState().profilePage} user={props.store.getState().loggedUser} dispatch={props.dispatch}/>}/>
                         </Routes>
                     </div>
 
