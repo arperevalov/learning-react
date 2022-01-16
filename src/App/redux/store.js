@@ -1,3 +1,8 @@
+const NEW_POST = 'NEW_POST',
+    NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE',
+    SEND_MESSAGE = 'SEND_MESSAGE',
+    CURRENT_DIALOG_FIELD_UPDATE = 'CURRENT_DIALOG_FIELD_UPDATE';
+
 let store = {
     _state : {
         profilePage: {
@@ -76,9 +81,9 @@ let store = {
         return this._state;
     },
 
-    dispatch(action, attr) {
-        switch (action){
-            case 'newPost' :
+    dispatch(action) {
+        switch (action.type){
+            case NEW_POST :
                 {
                     let post = {
                     id: this._state.profilePage.posts.length+1,
@@ -90,13 +95,13 @@ let store = {
                     this._observe();
                 }
                 break;
-            case 'newPostFieldUpdate' :
+            case NEW_POST_FIELD_UPDATE :
                 {
-                    this._state.profilePage.postField = attr;
+                    this._state.profilePage.postField = action.data;
                     this._observe();
                 }
                 break;
-            case  'sendMessageToDialog' :
+            case  SEND_MESSAGE :
                 {
                     let dialogMessage = {
                         id: this._state.dialogPage.messages.length+1,
@@ -109,9 +114,9 @@ let store = {
                     this._observe();
                 }
                 break;
-            case 'currentDialogTextFieldUpdate' :
+            case CURRENT_DIALOG_FIELD_UPDATE :
                 {
-                    this._state.dialogPage.currentDialogTextField = attr;
+                    this._state.dialogPage.currentDialogTextField = action.data;
                     this._observe();
                 }
                 break;
@@ -123,6 +128,13 @@ let store = {
         }
     },
 }
+
+
+
+export const newPostActionCreator = () => ({type:NEW_POST, data:''}),
+    newPostFieldUpdateActionCreator = (text) => ({type:NEW_POST_FIELD_UPDATE, data: text}),
+    sendMessageActionCreator = () => ({type:SEND_MESSAGE, data: ''}),
+    currentDialogFieldUpdateActionCreator = (text) => ({type:CURRENT_DIALOG_FIELD_UPDATE, data: text});
 
 export default store;
 

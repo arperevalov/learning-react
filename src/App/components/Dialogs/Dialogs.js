@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useSearchParams} from 'react-router-dom';
+import { currentDialogFieldUpdateActionCreator, sendMessageActionCreator } from '../../redux/store';
 import DialogListItem from './DialogListItem';
 import Message from './Message/Message';
 
@@ -18,11 +19,11 @@ export default function Dialogs(props) {
     let dialogField = React.createRef()
 
     let sendMessage = () => {
-        props.dispatch('sendMessageToDialog')
+        props.dispatch(sendMessageActionCreator())
     }
 
     let updateDialogTextField = () => {
-        props.dispatch('currentDialogTextFieldUpdate', dialogField.current.value)
+        props.dispatch(currentDialogFieldUpdateActionCreator(dialogField.current.value))
     }
 
         

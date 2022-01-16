@@ -1,15 +1,18 @@
 import React from 'react';
+import { newPostActionCreator, newPostFieldUpdateActionCreator } from '../../../redux/store';
+
+
 
 export default function NewPost(props) {
 
     let newPostElement = React.createRef();
 
     let submitPost = () => {
-        props.dispatch('newPost')
+        props.dispatch(newPostActionCreator())
     }
     
     let changeInfo = () => {
-        props.dispatch('newPostFieldUpdate', newPostElement.current.value)
+        props.dispatch(newPostFieldUpdateActionCreator(newPostElement.current.value))
     }
     
     return (
