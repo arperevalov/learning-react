@@ -1,11 +1,22 @@
 import React from 'react';
 
 export default function NewPost(props) {
+
+    let newPostElement = React.createRef();
+
+    let submitPost = () => {
+        props.newPost()
+    }
+    
+    let changeInfo = () => {
+        props.newPostFieldUpdate(newPostElement.current.value)
+    }
+    
     return (
-    <form>
+    <div>
         <label>Write something new!</label>
-        <textarea></textarea>
-        <button type='submit'>Submit</button>
-    </form>
+        <textarea ref={newPostElement} value={props.postField} onChange={changeInfo}></textarea>
+        <button onClick={submitPost}>Submit</button>
+    </div>
     )
 }

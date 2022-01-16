@@ -6,12 +6,24 @@ import Message from './Message/Message';
 export default function Dialogs(props) {
 
     let DisplayDialogsList = props
+        .state
         .dialogs
-        .map((d, key) => <DialogListItem name={d.name} id={d.id} key={key}/>)
+        .map((d, key) => <DialogListItem name={d.name} id={d.id} lastMessage={d.lastMessage} key={key}/>)
 
     let DisplayMessagesList = props
+        .state
         .messages
         .map((m, key) => <Message name={m.name} id={m.id} key={key} text={m.text}/>)
+
+    let dialogField = React.createRef()
+
+    let sendMessage = () => {
+        props.sendMessageToDialog()
+    }
+
+    let updateDialogTextField = () => {
+        props.currentDialogTextFieldUpdate(dialogField.current.value)
+    }
 
         
     return (
@@ -24,8 +36,8 @@ export default function Dialogs(props) {
                     {DisplayMessagesList}
                 </div>
                 <div className='dialogs__newMessage'>
-                    <input/>
-                    <button>Send</button>
+                    <input value={props.state.currentDialogTextField} ref={dialogField} onChange={updateDialogTextField}/>
+                    <button onClick={sendMessage}>Send</button>
                 </div>
             </div>
         </div>
