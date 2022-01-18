@@ -1,11 +1,9 @@
 import React from 'react';
-import {Link, useSearchParams} from 'react-router-dom';
-import { currentDialogFieldUpdateActionCreator, sendMessageActionCreator } from '../../redux/store';
+import { currentDialogFieldUpdateActionCreator, sendMessageActionCreator } from '../../redux/dialog-reducer';
 import DialogListItem from './DialogListItem';
 import Message from './Message/Message';
 
 export default function Dialogs(props) {
-    debugger
 
     let DisplayDialogsList = props
         .state

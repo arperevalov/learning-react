@@ -1,5 +1,5 @@
 import React from 'react';
-import { newPostActionCreator, newPostFieldUpdateActionCreator } from '../../../redux/store';
+import { newPostActionCreator, newPostFieldUpdateActionCreator } from '../../../redux/profile-reducer';
 
 
 
