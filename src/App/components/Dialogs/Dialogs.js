@@ -5,6 +5,7 @@ import DialogListItem from './DialogListItem';
 import Message from './Message/Message';
 
 export default function Dialogs(props) {
+    debugger
 
     let DisplayDialogsList = props
         .state

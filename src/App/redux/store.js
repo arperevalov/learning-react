@@ -1,3 +1,6 @@
+import dialogReducer from "./dialog-reducer";
+import profileReducer from "./profile-reducer";
+
 const NEW_POST = 'NEW_POST',
     NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE',
     SEND_MESSAGE = 'SEND_MESSAGE',
@@ -82,50 +85,55 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type){
-            case NEW_POST :
-                {
-                    let post = {
-                    id: this._state.profilePage.posts.length+1,
-                    text: this._state.profilePage.postField
-                    };
+
+        this._state.profilePage = profileReducer(this._state.profilePage, this._state.loggedUser, action);
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+
+        this._observe()
+        // switch (action.type){
+        //     case NEW_POST :
+        //         {
+        //             let post = {
+        //             id: this._state.profilePage.posts.length+1,
+        //             text: this._state.profilePage.postField
+        //             };
             
-                    this._state.profilePage.posts.push(post);
-                    this._state.profilePage.postField = '';
-                    this._observe();
-                }
-                break;
-            case NEW_POST_FIELD_UPDATE :
-                {
-                    this._state.profilePage.postField = action.data;
-                    this._observe();
-                }
-                break;
-            case  SEND_MESSAGE :
-                {
-                    let dialogMessage = {
-                        id: this._state.dialogPage.messages.length+1,
-                        name: this._state.loggedUser.name,
-                        text: this._state.dialogPage.currentDialogTextField
-                    }
+        //             this._state.profilePage.posts.push(post);
+        //             this._state.profilePage.postField = '';
+        //             this._observe();
+        //         }
+        //         break;
+        //     case NEW_POST_FIELD_UPDATE :
+        //         {
+        //             this._state.profilePage.postField = action.data;
+        //             this._observe();
+        //         }
+        //         break;
+        //     case  SEND_MESSAGE :
+        //         {
+        //             let dialogMessage = {
+        //                 id: this._state.dialogPage.messages.length+1,
+        //                 name: this._state.loggedUser.name,
+        //                 text: this._state.dialogPage.currentDialogTextField
+        //             }
                 
-                    this._state.dialogPage.messages.push(dialogMessage);
-                    this._state.dialogPage.currentDialogTextField = '';
-                    this._observe();
-                }
-                break;
-            case CURRENT_DIALOG_FIELD_UPDATE :
-                {
-                    this._state.dialogPage.currentDialogTextField = action.data;
-                    this._observe();
-                }
-                break;
-            default :
-                {
-                    console.log('%cAction Error: Such action doesn\'t exist or no action applied', 'background: #222; color: #bada55');
-                }
-                break;
-        }
+        //             this._state.dialogPage.messages.push(dialogMessage);
+        //             this._state.dialogPage.currentDialogTextField = '';
+        //             this._observe();
+        //         }
+        //         break;
+        //     case CURRENT_DIALOG_FIELD_UPDATE :
+        //         {
+        //             this._state.dialogPage.currentDialogTextField = action.data;
+        //             this._observe();
+        //         }
+        //         break;
+        //     default :
+        //         {
+        //             console.log('%cAction Error: Such action doesn\'t exist or no action applied', 'background: #222; color: #bada55');
+        //         }
+        //         break;
+        // }
     },
 }
 
