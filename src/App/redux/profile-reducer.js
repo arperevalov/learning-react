@@ -1,7 +1,28 @@
+import User from "./user-reducer";
+
 const NEW_POST = 'NEW_POST',
     NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE';
 
-const profileReducer = (action, state, user) => {
+let defaultVal = {
+    posts: [
+        {
+            id: 1,
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 2,
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 3,
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 4,
+            text: "Lorem ipsum dolor sit amet."
+        }
+    ],
+    postField: "some text"
+}
+
+const profileReducer = (state = defaultVal, action, user = User) => {
     switch (action.type){
         case NEW_POST :
             {

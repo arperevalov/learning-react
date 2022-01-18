@@ -1,8 +1,52 @@
+//refactor this in future
+import {temporaryUserInfo} from "./user-reducer";
+
 const SEND_MESSAGE = 'SEND_MESSAGE',
     CURRENT_DIALOG_FIELD_UPDATE = 'CURRENT_DIALOG_FIELD_UPDATE';
 
+let defaultVal = {
+    dialogs: [
+        {
+            id: 123,
+            name: "Mitchel Johnson",
+            lastmessage: 'Hi!'
+        }, {
+            id: 233,
+            name: "Robert Robertson",
+            lastmessage: 'Dunno'
+        }, {
+            id: 124143,
+            name: "Alex Swanson",
+            lastmessage: 'It\'s up to you'
+        }, {
+            id: 228,
+            name: "Lamar Dawson",
+            lastmessage: 'My dad told me to do this'
+        }
+    ],
+    messages: [
+        {
+            id: 123,
+            name: "Mitchel Johnson",
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 123,
+            name: "Robert Robertson",
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 123,
+            name: "Mitchel Johnson",
+            text: "Lorem ipsum dolor sit amet."
+        }, {
+            id: 123,
+            name: "Robert Dawson",
+            text: "Lorem ipsum dolor sit amet."
+        }
+    ],
+    currentDialogTextField: "WOW text for dialog!"
+}
 
-const dialogReducer = (action, state, user) => {
+const dialogReducer = (state = defaultVal, action, user = temporaryUserInfo) => {
     switch (action.type){
         case  SEND_MESSAGE :
             {
