@@ -18,11 +18,11 @@ export default function Dialogs(props) {
     let dialogField = React.createRef()
 
     let sendMessage = () => {
-        props.dispatch(sendMessageActionCreator())
+        props.sendMessage()
     }
 
     let updateDialogTextField = () => {
-        props.dispatch(currentDialogFieldUpdateActionCreator(dialogField.current.value))
+        props.updateDialogTextField(dialogField.current.value)
     }
 
         
