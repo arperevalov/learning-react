@@ -12,6 +12,9 @@ export default function Nav() {
                     <Link to='/messages'>Messages</Link>
                 </li>
                 <li>
+                    <Link to='/users'>Users</Link>
+                </li>
+                <li>
                     <a href='#'>News</a>
                 </li>
                 <li>

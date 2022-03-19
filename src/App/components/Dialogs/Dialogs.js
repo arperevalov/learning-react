@@ -1,17 +1,16 @@
 import React from 'react';
-import { currentDialogFieldUpdateActionCreator, sendMessageActionCreator } from '../../redux/dialog-reducer';
 import DialogListItem from './DialogListItem';
 import Message from './Message/Message';
 
 export default function Dialogs(props) {
 
     let DisplayDialogsList = props
-        .state
+        .dialogPage
         .dialogs
         .map((d, key) => <DialogListItem name={d.name} id={d.id} lastMessage={d.lastMessage} key={key}/>)
 
     let DisplayMessagesList = props
-        .state
+        .dialogPage
         .messages
         .map((m, key) => <Message name={m.name} id={m.id} key={key} text={m.text}/>)
 
@@ -36,7 +35,7 @@ export default function Dialogs(props) {
                     {DisplayMessagesList}
                 </div>
                 <div className='dialogs__newMessage'>
-                    <input value={props.state.currentDialogTextField} ref={dialogField} onChange={updateDialogTextField}/>
+                    <input value={props.dialogPage.currentDialogTextField} ref={dialogField} onChange={updateDialogTextField}/>
                     <button onClick={sendMessage}>Send</button>
                 </div>
             </div>

@@ -1,5 +1,4 @@
-//refactor this in future
-import {temporaryUserInfo} from "./user-reducer";
+import loggedUserReducer from "./loggedUser-reducer";
 
 const SEND_MESSAGE = 'SEND_MESSAGE',
     CURRENT_DIALOG_FIELD_UPDATE = 'CURRENT_DIALOG_FIELD_UPDATE';
@@ -46,7 +45,8 @@ let defaultVal = {
     currentDialogTextField: "WOW text for dialog!"
 }
 
-const dialogReducer = (state = defaultVal, action, user = temporaryUserInfo) => {
+const dialogReducer = (state = defaultVal, action, user = loggedUserReducer()) => {
+
     switch (action.type){
         case  SEND_MESSAGE :
             {
@@ -55,18 +55,20 @@ const dialogReducer = (state = defaultVal, action, user = temporaryUserInfo) => 
                     name: user.name,
                     text: state.currentDialogTextField
                 }
-            
-                state.messages.push(dialogMessage);
-                state.currentDialogTextField = '';
-                // this._observe();
-                return state;
+
+                return {
+                    ...state,
+                    messages: [...state.messages, dialogMessage],
+                    currentDialogTextField: ''
+                };
             }
             break;
         case CURRENT_DIALOG_FIELD_UPDATE :
             {
-                state.currentDialogTextField = action.data;
-                // this._observe();
-                return state;
+                return {
+                    ...state,
+                    currentDialogTextField: action.data
+                };
             }
             break;
         default :

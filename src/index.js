@@ -8,10 +8,13 @@ import {BrowserRouter} from 'react-router-dom';
 
 import 'normalize.css';
 import './scss/App.scss'
+import { Provider } from 'react-redux';
 
 const renderEntireTree = () => ReactDOM.render(
     <BrowserRouter>
-        <App store={store} dispatch={store.dispatch.bind(store)}/>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </BrowserRouter>,
     document.getElementById(
         "app"
@@ -19,6 +22,3 @@ const renderEntireTree = () => ReactDOM.render(
 );
 
 renderEntireTree(store);
-
-store.subscribe(renderEntireTree);
-

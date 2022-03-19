@@ -1,12 +1,14 @@
 import { combineReducers, createStore, applyMiddleware} from 'redux'
 import dialogReducer from './dialog-reducer'
 import profileReducer from './profile-reducer'
-import userReducer from './user-reducer'
+import loggedUserReducer from './loggedUser-reducer'
+import usersReducer from './users-reducer'
 
 let reducers = combineReducers({
     dialogPage: dialogReducer,
     profilePage: profileReducer,
-    loggedUser: userReducer
+    loggedUser: loggedUserReducer,
+    usersPage: usersReducer
 })
 
 export let store = createStore(reducers, applyMiddleware());

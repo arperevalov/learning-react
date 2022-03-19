@@ -4,7 +4,7 @@ import Post from './Posts/Post';
 
 export default function Profile(props) {
 
-    let DisplayPostsList = props.state.posts.map(
+    let DisplayPostsList = props.profilePage.posts.map(
             (p, key) => <Post name={props.user.name} id={p.id} key={key} text={p.text}/>
         )
 
@@ -27,7 +27,7 @@ export default function Profile(props) {
             <div className='posts'>
                 <div>
                     <label>Write something new!</label>
-                    <textarea ref={newPostElement} value={props.state.postField} onChange={changeInfo}></textarea>
+                    <textarea ref={newPostElement} value={props.profilePage.postField} onChange={changeInfo}></textarea>
                     <button onClick={submitPost}>Submit</button>
                 </div>
                 <div>

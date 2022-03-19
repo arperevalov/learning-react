@@ -1,18 +1,26 @@
 import React from 'react';
 import Profile from './Profile'
 import { newPostActionCreator, newPostFieldUpdateActionCreator } from '../../redux/profile-reducer';
+import { connect } from 'react-redux';
 
-export default function ProfileContainer(props) {
-
-    let submitPost = () => {
-        props.store.dispatch(newPostActionCreator())
+let mapStateToProps = (store) => {
+    return {
+        profilePage: store.profilePage,
+        user: store.loggedUser
     }
-    
-    let changeInfo = (text) => {
-        props.store.dispatch(newPostFieldUpdateActionCreator(text))
-    }
-        
-    return (
-        <Profile state={props.store.getState().profilePage} user={props.store.getState().loggedUser} submitPost={submitPost} changeInfo={changeInfo}/>
-    )
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        submitPost : () => {
+            dispatch(newPostActionCreator())
+        },
+        changeInfo: (text) => {
+            dispatch(newPostFieldUpdateActionCreator(text))
+        }
+    }
+}
+
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps) (Profile)
+
+export default ProfileContainer;

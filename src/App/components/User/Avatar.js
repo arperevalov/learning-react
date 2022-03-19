@@ -1,9 +1,12 @@
 import React from 'react';
 
 export default function Avatar(props) {
+
     return (
         <div className='user__avatar'>
-            {NameToLetters(props.name)}
+            {
+                !props.photos ? NameToLetters(props.name) : props.photos.small ? <img src={props.photos.small}/> :NameToLetters(props.name)
+            }
         </div>
     )
 }
