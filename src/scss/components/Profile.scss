@@ -20,5 +20,14 @@
         align-items: center;
         border-radius: 2rem;
         padding: 1rem;
+
+        img {
+            border-radius: 100px;
+            width: 32px;
+        }
+
+        img + &_avatar {
+            background-color: transparent;
+        }
     }
 }
