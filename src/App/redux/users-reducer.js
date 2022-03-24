@@ -2,13 +2,15 @@ const UNSUB = 'UNSUB',
 SUB = 'SUB',
 SET_USERS = 'SET_USERS',
 CHANGE_PAGE = 'CHANGE_PAGE',
-CHANGE_TOTAL_USERS_COUNT = 'CHANGE_TOTAL_USERS_COUNT'
+CHANGE_TOTAL_USERS_COUNT = 'CHANGE_TOTAL_USERS_COUNT',
+SET_FETCHING = 'SET_FETCHING'
 
 let defaultVal = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state = defaultVal, action) => {
@@ -55,6 +57,13 @@ const usersReducer = (state = defaultVal, action) => {
                     totalUsersCount: action.totalUsersCount
                 }
             }
+        case SET_FETCHING :
+            {
+                return {
+                    ...state,
+                    isFetching: action.isFetching
+                }
+            }
         default:
             return state
             break
@@ -64,8 +73,9 @@ const usersReducer = (state = defaultVal, action) => {
 
 export default usersReducer;
 
-export const unsubscribeUserAC = (user) => ({type:UNSUB, user});
-export const subscribeUserAC = (user) => ({type:SUB, user});
-export const setUsersAC = (users) => ({type:SET_USERS, users});
-export const changePageAC = (currentPage) => ({type:CHANGE_PAGE, currentPage});
-export const changeTotalUsersCountAC = (totalUsersCount) => ({type:CHANGE_TOTAL_USERS_COUNT, totalUsersCount});
+export const unsubscribeUser = (user) => ({type:UNSUB, user});
+export const subscribeUser = (user) => ({type:SUB, user});
+export const setUsers = (users) => ({type:SET_USERS, users});
+export const changePage = (currentPage) => ({type:CHANGE_PAGE, currentPage});
+export const changeTotalUsersCount = (totalUsersCount) => ({type:CHANGE_TOTAL_USERS_COUNT, totalUsersCount});
+export const setFetching = (isFetching) => ({type: SET_FETCHING, isFetching})
