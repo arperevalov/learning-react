@@ -80,7 +80,7 @@ const dialogReducer = (state = defaultVal, action, user = loggedUserReducer()) =
     }
 }
 
-export const sendMessageActionCreator = () => ({type:SEND_MESSAGE, data: ''}),
-    currentDialogFieldUpdateActionCreator = (text) => ({type:CURRENT_DIALOG_FIELD_UPDATE, data: text});
+export const sendMessage = () => ({type:SEND_MESSAGE, data: ''});
+export const currentDialogFieldUpdate = (text) => ({type:CURRENT_DIALOG_FIELD_UPDATE, data: text});
 
 export default dialogReducer;

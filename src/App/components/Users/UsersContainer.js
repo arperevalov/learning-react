@@ -1,51 +1,50 @@
 import * as axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Users from './Users'
 import { connect } from 'react-redux';
 import { changePage, changeTotalUsersCount, setUsers, subscribeUser, unsubscribeUser, setFetching } from '../../redux/users-reducer';
 import Preloader from '../Preloader';
 
-class UsersAPI extends React.Component {
+const UsersAPI = props => {
 
-    componentDidMount() {
-        if (this.props.users == 0) {
-            this.props.setFetching(true)
-            let url = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
+    useEffect(()=>{
+        if (props.users == 0) {
+            props.setFetching(true)
+            let url = `https://social-network.samuraijs.com/api/1.0/users?count=${props.pageSize}&page=${props.currentPage}`
             axios.get(url).then(
                 r=>{
-                    this.props.setUsers(r.data.items)
-                    this.props.changeTotalUsersCount(r.data.totalCount)
-                    this.props.setFetching(false)
+                    props.setUsers(r.data.items)
+                    props.changeTotalUsersCount(r.data.totalCount)
+                    props.setFetching(false)
                 }
             )
         }
-    }
+    },[])
 
-    changingPage = (pageNumber) => {
-        this.props.setFetching(true)
-        let url = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`
+    const changingPage = (pageNumber) => {
+        props.setFetching(true)
+        let url = `https://social-network.samuraijs.com/api/1.0/users?count=${props.pageSize}&page=${pageNumber}`
         axios.get(url).then(
             r=>{
-                this.props.setUsers(r.data.items)
-                this.props.setFetching(false)
+                props.setUsers(r.data.items)
+                props.setFetching(false)
             }
         )
-        this.props.changePage(pageNumber);
+        props.changePage(pageNumber);
     }
         
-    render() {return <>
-        {this.props.isFetching ? <Preloader /> : ''}
-        <Users  changingPage = {this.changingPage}
-                totalUsersCount = {this.props.totalUsersCount}
-                pageSize = {this.props.pageSize}
-                currentPage = {this.props.currentPage}
-                users = {this.props.users}
-                loggedUser = {this.props.loggedUser}
-                subscribeUser = {this.props.subscribeUser}
-                unsubscribeUser = {this.props.unsubscribeUser}
+    return <>
+        {props.isFetching ? <Preloader /> : ''}
+        <Users  changingPage = {changingPage}
+                totalUsersCount = {props.totalUsersCount}
+                pageSize = {props.pageSize}
+                currentPage = {props.currentPage}
+                users = {props.users}
+                loggedUser = {props.loggedUser}
+                subscribeUser = {props.subscribeUser}
+                unsubscribeUser = {props.unsubscribeUser}
         />
     </>
-    }
 }
 
 let mapStateToProps = (store) => {
@@ -56,26 +55,6 @@ let mapStateToProps = (store) => {
         pageSize: store.usersPage.pageSize,
         currentPage: store.usersPage.currentPage,
         isFetching: store.usersPage.isFetching
-    }
-}
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        unsubscribeUser: (user) => {
-            dispatch(unsubscribeUserAC(user))
-        },
-        subscribeUser: (user) => {
-            dispatch(subscribeUserAC(user))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        changePage: (currentPage) => {
-            dispatch(changePageAC(currentPage))
-        },
-        changeTotalUsersCount: (totalUsersCount) => {
-            dispatch(changeTotalUsersCountAC(totalUsersCount))
-        }
     }
 }
 

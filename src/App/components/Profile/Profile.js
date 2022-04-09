@@ -4,18 +4,22 @@ import Post from './Posts/Post';
 
 export default function Profile(props) {
 
+    if (props.profilePage.user === null) return ''
+
+    const user = props.profilePage.user;
+
     let DisplayPostsList = props.profilePage.posts.map(
-            (p, key) => <Post name={props.user.name} id={p.id} key={key} text={p.text}/>
+            (p, key) => <Post name={user.fullName} photos={user.photos} id={p.id} key={key} text={p.text}/>
         )
 
     let newPostElement = React.createRef();
 
     let submitPost = () => {
-        props.submitPost()
+        props.newPost()
     }
     
     let changeInfo = () => {
-        props.changeInfo(newPostElement.current.value)
+        props.newPostFieldUpdate(newPostElement.current.value)
     }
         
     return (
@@ -23,7 +27,7 @@ export default function Profile(props) {
             <img
                 className='wallpaper'
                 src='https://media-exp1.licdn.com/dms/image/C4D1BAQGDmALg_8s-Yg/company-background_10000/0/1519799119530?e=2159024400&v=beta&t=4WV9YKR9L3PAEnppWmPPMk5xVnETtWvhZN8NexEzPwM'/>
-            <User name={props.user.name}/>
+            <User name={user.fullName} photos={user.photos}/>
             <div className='posts'>
                 <div>
                     <label>Write something new!</label>

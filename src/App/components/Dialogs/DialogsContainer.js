@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { currentDialogFieldUpdateActionCreator, sendMessageActionCreator } from '../../redux/dialog-reducer';
+import { currentDialogFieldUpdate, sendMessage } from '../../redux/dialog-reducer';
 import Dialogs from './Dialogs';
 
 let mapStateToProps = (store) => {
@@ -10,17 +10,9 @@ let mapStateToProps = (store) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        updateDialogTextField : (text) => {
-            dispatch(currentDialogFieldUpdateActionCreator(text))
-        },
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator())
-        }
-    }
-}
-
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
+export const DialogsContainer = connect(mapStateToProps, {
+    currentDialogFieldUpdate,
+    sendMessage
+}) (Dialogs);
 
 export default DialogsContainer;

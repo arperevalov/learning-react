@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Avatar from "./Avatar";
 
 export default function User(props) {
@@ -35,27 +35,31 @@ export default function User(props) {
         }
     }
 
-    const unsubscribe = () => {
+    const unsubscribe = (e) => {
+        e.preventDefault()
         props.unsubscribeUser(props.id)
     }
 
-    const subscribe = () => {
+    const subscribe = (e) => {
+        e.preventDefault()
         props.subscribeUser(props.id)
     }
 
     return (
-        <div>
-            <div className='user'>
-                <Avatar name={props.name} photos={props.photos}/>
-                <span className='user__name'>
-                    {props.name}</span>
-                <div className='additional'>
-                    <UserStatus />
-                    <UserLocation />
-                    <IsFollowed/>
+        <NavLink to={`/profile/${props.id}`}>
+            <div>
+                <div className='user'>
+                    <Avatar name={props.name} photos={props.photos}/>
+                    <span className='user__name'>
+                        {props.name}</span>
+                    <div className='additional'>
+                        <UserStatus />
+                        <UserLocation />
+                        <IsFollowed/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </NavLink>
     )
 }
 

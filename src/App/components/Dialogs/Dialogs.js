@@ -21,7 +21,7 @@ export default function Dialogs(props) {
     }
 
     let updateDialogTextField = () => {
-        props.updateDialogTextField(dialogField.current.value)
+        props.currentDialogFieldUpdate(dialogField.current.value)
     }
 
         

@@ -15,9 +15,10 @@ export default function App(props) {
                     <Nav/>
                     <div className='content'>
                         <Routes>
-                            <Route exact path={"/messages"} element={<DialogsContainer store={props.store}/>}/>
-                            <Route path="/profile" element={<ProfileContainer store={props.store}/>}/>
-                            <Route path="/users" element={<UsersContainer store={props.store}/>}/>
+                            <Route exact path={"/messages"} element={<DialogsContainer/>}/>
+                            <Route path="/profile" element={<ProfileContainer/>}/>
+                            <Route path='/profile/:id' element={<ProfileContainer/>}/>
+                            <Route path="/users" element={<UsersContainer/>}/>
                         </Routes>
                     </div>
 

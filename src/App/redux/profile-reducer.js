@@ -1,9 +1,11 @@
 import loggedUserReducer from "./loggedUser-reducer";
 
 const NEW_POST = 'NEW_POST',
-    NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE';
+    NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE',
+    SET_PROFILE_USER = 'SET_PROFILE_USER';
 
 let defaultVal = {
+    user: null,
     posts: [
         {
             id: 1,
@@ -46,6 +48,14 @@ const profileReducer = (state = defaultVal, action, user = loggedUserReducer()) 
                 };
             }
             break;
+        case SET_PROFILE_USER :
+            {
+                return {
+                    ...state,
+                    user: action.user
+                };
+            }
+            break;
         default :
             {
                 console.log('%cAction Error: Such action doesn\'t exist or no action applied', 'background: #222; color: #bada55');
@@ -55,7 +65,8 @@ const profileReducer = (state = defaultVal, action, user = loggedUserReducer()) 
     }
 }
 
-export const newPostActionCreator = () => ({type:NEW_POST, data:''}),
-    newPostFieldUpdateActionCreator = (text) => ({type:NEW_POST_FIELD_UPDATE, data: text});
+export const newPost = () => ({type:NEW_POST, data:''}),
+    newPostFieldUpdate = (text) => ({type:NEW_POST_FIELD_UPDATE, data: text}),
+    setProfileUser = (user) => ({type:SET_PROFILE_USER, user})
 
 export default profileReducer
