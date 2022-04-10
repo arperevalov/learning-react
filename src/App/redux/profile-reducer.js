@@ -1,5 +1,3 @@
-import loggedUserReducer from "./loggedUser-reducer";
-
 const NEW_POST = 'NEW_POST',
     NEW_POST_FIELD_UPDATE = 'NEW_POST_FIELD_UPDATE',
     SET_PROFILE_USER = 'SET_PROFILE_USER';
@@ -24,7 +22,7 @@ let defaultVal = {
     postField: "some text"
 }
 
-const profileReducer = (state = defaultVal, action, user = loggedUserReducer()) => {
+const profileReducer = (state = defaultVal, action) => {
     switch (action.type){
         case NEW_POST :
             {

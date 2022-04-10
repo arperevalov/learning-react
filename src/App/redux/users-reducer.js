@@ -14,7 +14,7 @@ let defaultVal = {
 }
 
 const usersReducer = (state = defaultVal, action) => {
-    
+
     switch (action.type) {
 
         case UNSUB :

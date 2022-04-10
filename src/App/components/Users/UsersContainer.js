@@ -50,7 +50,7 @@ const UsersAPI = props => {
 let mapStateToProps = (store) => {
     return {
         users: store.usersPage.users,
-        loggedUser: store.loggedUser,
+        loggedUser: store.auth,
         totalUsersCount: store.usersPage.totalUsersCount,
         pageSize: store.usersPage.pageSize,
         currentPage: store.usersPage.currentPage,

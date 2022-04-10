@@ -1,4 +1,4 @@
-import loggedUserReducer from "./loggedUser-reducer";
+import authReducer from "./auth-reducer";
 
 const SEND_MESSAGE = 'SEND_MESSAGE',
     CURRENT_DIALOG_FIELD_UPDATE = 'CURRENT_DIALOG_FIELD_UPDATE';
@@ -45,7 +45,7 @@ let defaultVal = {
     currentDialogTextField: "WOW text for dialog!"
 }
 
-const dialogReducer = (state = defaultVal, action, user = loggedUserReducer()) => {
+const dialogReducer = (state = defaultVal, action, user = authReducer()) => {
 
     switch (action.type){
         case  SEND_MESSAGE :
